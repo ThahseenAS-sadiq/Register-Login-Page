@@ -1,17 +1,11 @@
 {
   "name": "loginpage",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js",
-    "postinstall": "cd ../Frontend && npm install && npm run build"
+    "dev": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "dotenv": "^17.2.3",
