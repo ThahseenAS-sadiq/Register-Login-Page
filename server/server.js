@@ -27,8 +27,8 @@ if (process.env.NODE_ENV === "production") {
   const frontendBuildPath = path.join(__dirname, "../Frontend/build");
   app.use(express.static(frontendBuildPath));
 
-  // All other routes serve React app
-  app.get("*", (req, res) => {
+  // ✅ Express 5 compatible catch-all route
+  app.get("/*", (req, res) => {
     res.sendFile(path.join(frontendBuildPath, "index.html"));
   });
 } else {
@@ -38,9 +38,16 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: "Server Error" });
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
 
 
