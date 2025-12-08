@@ -13,10 +13,10 @@ const app = express();
 // Middleware
 app.use(express.json());
 
-// Connect to DB
+// Connect to MongoDB
 connectDB();
 
-// Routes
+// API Routes
 app.use("/api/users", authRoutes);
 
 // Serve frontend in production
@@ -24,19 +24,23 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../Frontend/build")));
+  const frontendBuildPath = path.join(__dirname, "../Frontend/build");
+  app.use(express.static(frontendBuildPath));
 
+  // All other routes serve React app
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../Frontend/build", "index.html"));
+    res.sendFile(path.join(frontendBuildPath, "index.html"));
   });
 } else {
-  // Root route for testing backend locally
+  // Development root route
   app.get("/", (req, res) => {
-    res.send("API is running...");
+    res.send("API is running in development...");
   });
 }
 
+// Start server
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
+
 

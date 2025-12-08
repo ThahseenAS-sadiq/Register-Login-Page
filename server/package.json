@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "postinstall": "cd ../Frontend && npm install && npm run build"
   },
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
