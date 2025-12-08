@@ -1,12 +1,2 @@
-# Root
-/node_modules
-/.env
-
-# Backend
-Backend/node_modules
-Backend/.env
-
-# Frontend
-Frontend/node_modules
-Frontend/.env
-Frontend/build
+node_modules
+.env

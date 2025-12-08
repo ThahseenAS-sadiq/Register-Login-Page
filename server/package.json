@@ -2,11 +2,11 @@
   "name": "loginpage",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "node Backend/server.js"
+    "dev": "node server.js"
   },
-  "type":"module",
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -18,3 +18,4 @@
     "mongoose": "^9.0.0"
   }
 }
+
