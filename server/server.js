@@ -24,12 +24,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 if (process.env.NODE_ENV === "production") {
-  const frontendBuildPath = path.join(__dirname, "../Frontend/build");
-  app.use(express.static(frontendBuildPath));
+  // ✅ Vite outputs build in 'dist', not 'build'
+  const frontendDistPath = path.join(__dirname, "../Frontend/dist");
+  app.use(express.static(frontendDistPath));
 
-  // ✅ Express 5 compatible catch-all route
-  app.get("/*", (req, res) => {
-    res.sendFile(path.join(frontendBuildPath, "index.html"));
+  // Express 5 compatible catch-all route
+  app.get("/:path(.*)", (req, res) => {
+    res.sendFile(path.join(frontendDistPath, "index.html"));
   });
 } else {
   // Development root route
